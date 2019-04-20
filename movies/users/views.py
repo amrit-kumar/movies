@@ -2,10 +2,23 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView
-from rest_framework import viewsets
+from rest_framework import viewsets,permissions
 from .serializers import UserSerializer, GroupSerializer,MoviesSerializer
 from .models import Movies
+from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_METHODS,IsAdminUser
 
+class IsAuthenticatedOrReadOnly(BasePermission):
+    """
+    Only safe request is authenticated as a normal user, non safe methods are allowed for superuser only.
+    """
+
+    def has_permission(self, request, view):
+        if (request.method in SAFE_METHODS and request.user):
+            return True
+        elif(request.method not in SAFE_METHODS and request.user.is_superuser ):
+            return True
+        else:
+            return False
 
 
 User = get_user_model()
@@ -72,3 +85,4 @@ class MoviesViewSet(viewsets.ModelViewSet):
     """
     queryset = Movies.objects.all()
     serializer_class = MoviesSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly,)
