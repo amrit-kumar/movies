@@ -29,3 +29,6 @@ class Movies(models.Model):
     def get_genre(self):
         return json.loads(self.foo)
 
+    def __str__(self):
+        return '%s %s' % (self.name, self.imdb_score)
+

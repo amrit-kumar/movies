@@ -3,8 +3,11 @@ from django.contrib.auth import admin as auth_admin
 from django.contrib.auth import get_user_model
 
 from movies.users.forms import UserChangeForm, UserCreationForm
-
+from .models import Movies
 User = get_user_model()
+
+
+admin.site.register(Movies)
 
 
 @admin.register(User)
