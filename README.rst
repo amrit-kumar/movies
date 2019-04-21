@@ -80,6 +80,8 @@ The following details how to deploy this application.
 Heroku
 ^^^^^^
 Api endpoint for Crus operations on movies:`https://movies-amrit.herokuapp.com/movies/`.
+
+
 ..`https://movies-amrit.herokuapp.com/movies/`
 See detailed `cookiecutter-django Heroku documentation`_.
 
