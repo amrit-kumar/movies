@@ -7,9 +7,34 @@ from .serializers import UserSerializer, GroupSerializer,MoviesSerializer
 from .models import Movies
 from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_METHODS,IsAdminUser
 
+
+
+class IsAdminOrOwnProfileOrReadOnly(BasePermission):
+    """
+    Only safe request is authenticated as a normal user or he can view his data and edit that, all methods are allowed for superuser only.
+    """
+    def has_permission(self, request, view):
+        if (request.method != 'POST' and request.user):
+            return True
+        elif(request.method not in SAFE_METHODS and request.user.is_superuser ):
+            return True
+        else:
+            return False
+
+    def has_object_permission(self, request, view,obj):
+        if (request.method in SAFE_METHODS and request.user):
+            return True
+        elif (request.method not in SAFE_METHODS and obj.username == request.user.username and request.method != 'DELETE'):
+            return True
+        elif(request.method not in SAFE_METHODS and request.user.is_superuser ):
+            return True
+        else:
+            return False
+
+
 class IsAuthenticatedOrReadOnly(BasePermission):
     """
-    Only safe request is authenticated as a normal user, non safe methods are allowed for superuser only.
+    Only safe request is authenticated as a normal user, all methods are allowed for superuser only.
     """
 
     def has_permission(self, request, view):
@@ -75,6 +100,8 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = (IsAdminOrOwnProfileOrReadOnly,)
+
 
 
 
