@@ -101,15 +101,40 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (IsAdminOrOwnProfileOrReadOnly,)
+    def get_queryset(self):
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
+        queryset = User.objects.all()
+        print(queryset)
 
+        username = self.request.query_params.get('username', None)
+        print("username",username)
+        if username is not None:
+            queryset = User.objects.filter(name__icontains="per")
+            print(queryset)
 
+        return queryset
 
 
 
 class MoviesViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows groups to be viewed or edited.
+    API endpoint that allows movies to be viewed or edited.
     """
     queryset = Movies.objects.all()
     serializer_class = MoviesSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
+    def get_queryset(self):
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
+        queryset = Movies.objects.all()
+
+        moviename = self.request.query_params.get('movie', None)
+        if moviename is not None:
+
+            queryset = Movies.objects.filter(name__icontains = moviename)
+        return queryset
