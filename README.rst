@@ -1,7 +1,13 @@
-movies
+Movies
 ======
 
 RESTful API for movies(something similar to IMDB)
+Using:
+1. MySql to store data,
+2. Django for api(use Django Rest framework).
+Has 2 levels of access:
+admin = who can add, remove or edit movies.
+users = who can just view the movies.
 
 .. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg
      :target: https://github.com/pydanny/cookiecutter-django/
@@ -80,6 +86,9 @@ The following details how to deploy this application.
 Heroku
 ^^^^^^
 Api endpoint for CRUD operations on movies : `https://movies-amrit.herokuapp.com/movies/`.
+
+Api endpoint for search operations on movies : `https://movies-amrit.herokuapp.com/movies/?movie=SEARCH-KEYWORD`.
+
 
 
 
