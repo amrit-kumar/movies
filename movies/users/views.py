@@ -103,17 +103,14 @@ class UserViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAdminOrOwnProfileOrReadOnly,)
     def get_queryset(self):
         """
-        Optionally restricts the returned purchases to a given user,
-        by filtering against a `username` query parameter in the URL.
+      search for users
         """
         queryset = User.objects.all()
-        print(queryset)
 
         username = self.request.query_params.get('username', None)
-        print("username",username)
         if username is not None:
-            queryset = User.objects.filter(name__icontains="per")
-            print(queryset)
+
+            queryset = User.objects.filter(username__icontains="per")
 
         return queryset
 
@@ -128,8 +125,7 @@ class MoviesViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     def get_queryset(self):
         """
-        Optionally restricts the returned purchases to a given user,
-        by filtering against a `username` query parameter in the URL.
+        search for movies
         """
         queryset = Movies.objects.all()
 
