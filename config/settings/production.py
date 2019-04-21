@@ -28,18 +28,18 @@ DATABASES = {
 
 # CACHES
 # ------------------------------------------------------------------------------
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": env("REDIS_URL"),
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-            # Mimicing memcache behavior.
-            # http://niwinz.github.io/django-redis/latest/#_memcached_exceptions_behavior
-            "IGNORE_EXCEPTIONS": True,
-        },
-    }
-}
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": env("REDIS_URL"),
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#             # Mimicing memcache behavior.
+#             # http://niwinz.github.io/django-redis/latest/#_memcached_exceptions_behavior
+#             "IGNORE_EXCEPTIONS": True,
+#         },
+#     }
+# }
 
 # SECURITY
 # ------------------------------------------------------------------------------
@@ -72,23 +72,23 @@ SECURE_CONTENT_TYPE_NOSNIFF = env.bool(
 INSTALLED_APPS += ["storages"]  # noqa F405
 
 # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
-AWS_ACCESS_KEY_ID = env("DJANGO_AWS_ACCESS_KEY_ID")
-# https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
-AWS_SECRET_ACCESS_KEY = env("DJANGO_AWS_SECRET_ACCESS_KEY")
-# https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
-AWS_STORAGE_BUCKET_NAME = env("DJANGO_AWS_STORAGE_BUCKET_NAME")
-# https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
-AWS_QUERYSTRING_AUTH = False
-# DO NOT change these unless you know what you're doing.
-_AWS_EXPIRY = 60 * 60 * 24 * 7
-# https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
-AWS_S3_OBJECT_PARAMETERS = {
-    "CacheControl": f"max-age={_AWS_EXPIRY}, s-maxage={_AWS_EXPIRY}, must-revalidate"
-}
-#  https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
-AWS_DEFAULT_ACL = None
-# https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
-AWS_S3_REGION_NAME = env("DJANGO_AWS_S3_REGION_NAME", default=None)
+# AWS_ACCESS_KEY_ID = env("DJANGO_AWS_ACCESS_KEY_ID")
+# # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
+# AWS_SECRET_ACCESS_KEY = env("DJANGO_AWS_SECRET_ACCESS_KEY")
+# # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
+# AWS_STORAGE_BUCKET_NAME = env("DJANGO_AWS_STORAGE_BUCKET_NAME")
+# # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
+# AWS_QUERYSTRING_AUTH = False
+# # DO NOT change these unless you know what you're doing.
+# _AWS_EXPIRY = 60 * 60 * 24 * 7
+# # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
+# AWS_S3_OBJECT_PARAMETERS = {
+#     "CacheControl": f"max-age={_AWS_EXPIRY}, s-maxage={_AWS_EXPIRY}, must-revalidate"
+# }
+# #  https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
+# AWS_DEFAULT_ACL = None
+# # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
+# AWS_S3_REGION_NAME = env("DJANGO_AWS_S3_REGION_NAME", default=None)
 
 
 # STATIC
@@ -133,15 +133,15 @@ TEMPLATES[0]["OPTIONS"]["loaders"] = [  # noqa F405
 # EMAIL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
-DEFAULT_FROM_EMAIL = env(
-    "DJANGO_DEFAULT_FROM_EMAIL", default="movies <noreply@example.com>"
-)
-# https://docs.djangoproject.com/en/dev/ref/settings/#server-email
-SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
-# https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
-EMAIL_SUBJECT_PREFIX = env(
-    "DJANGO_EMAIL_SUBJECT_PREFIX", default="[movies]"
-)
+# DEFAULT_FROM_EMAIL = env(
+#     "DJANGO_DEFAULT_FROM_EMAIL", default="movies <kumaramrit38@gmail.com>"
+# )
+# # https://docs.djangoproject.com/en/dev/ref/settings/#server-email
+# SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
+# # https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
+# EMAIL_SUBJECT_PREFIX = env(
+#     "DJANGO_EMAIL_SUBJECT_PREFIX", default="[movies]"
+# )
 
 # ADMIN
 # ------------------------------------------------------------------------------
@@ -151,13 +151,13 @@ ADMIN_URL = env("DJANGO_ADMIN_URL")
 # Anymail (Mailgun)
 # ------------------------------------------------------------------------------
 # https://anymail.readthedocs.io/en/stable/installation/#installing-anymail
-INSTALLED_APPS += ["anymail"]  # noqa F405
-EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
-# https://anymail.readthedocs.io/en/stable/installation/#anymail-settings-reference
-ANYMAIL = {
-    "MAILGUN_API_KEY": env("MAILGUN_API_KEY"),
-    "MAILGUN_SENDER_DOMAIN": env("MAILGUN_DOMAIN"),
-}
+# INSTALLED_APPS += ["anymail"]  # noqa F405
+# EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+# # https://anymail.readthedocs.io/en/stable/installation/#anymail-settings-reference
+# ANYMAIL = {
+#     "MAILGUN_API_KEY": env("MAILGUN_API_KEY"),
+#     "MAILGUN_SENDER_DOMAIN": env("MAILGUN_DOMAIN"),
+# }
 
 # Gunicorn
 # ------------------------------------------------------------------------------
