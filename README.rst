@@ -2,11 +2,18 @@ Movies
 ======
 
 RESTful API for movies(something similar to IMDB)
+
+
 Using:
+
 1. MySql to store data,
+
 2. Django for api(use Django Rest framework).
+
 Has 2 levels of access:
+
 admin = who can add, remove or edit movies.
+
 users = who can just view the movies.
 
 .. image:: https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg
