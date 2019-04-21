@@ -94,8 +94,8 @@ INSTALLED_APPS += ["storages"]  # noqa F405
 # STATIC
 # ------------------------
 
-STATICFILES_STORAGE = "config.settings.production.StaticRootS3Boto3Storage"
-STATIC_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/static/"
+# STATICFILES_STORAGE = "config.settings.production.StaticRootS3Boto3Storage"
+# STATIC_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/static/"
 
 # MEDIA
 # ------------------------------------------------------------------------------
@@ -114,8 +114,8 @@ class MediaRootS3Boto3Storage(S3Boto3Storage):
 
 
 # endregion
-DEFAULT_FILE_STORAGE = "config.settings.production.MediaRootS3Boto3Storage"
-MEDIA_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/media/"
+# DEFAULT_FILE_STORAGE = "config.settings.production.MediaRootS3Boto3Storage"
+# MEDIA_URL = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/media/"
 
 # TEMPLATES
 # ------------------------------------------------------------------------------
