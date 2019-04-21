@@ -17,13 +17,15 @@ ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["example.com"])
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'movies_schema',
-        'USER': 'amrit',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
+        'NAME': 'heroku_e3f6ed41e875030',
+        'USER': 'b04a400d92511d',
+        'PASSWORD': '2a2f9d74',
+        'HOST': 'us-cdbr-iron-east-02.cleardb.net',
         'PORT': '3306',
     }
 }
+# 'HOST': 'mysql://b04a400d92511d:2a2f9d74@us-cdbr-iron-east-02.cleardb.net/heroku_e3f6ed41e875030?reconnect=true',
+
 # CACHES
 # ------------------------------------------------------------------------------
 CACHES = {
